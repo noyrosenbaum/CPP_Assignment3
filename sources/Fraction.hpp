@@ -11,7 +11,6 @@ namespace ariel
         int numerator;
         int denominator;
         float num;
-        void reduce(Fraction &frac);
 
     public:
         Fraction(int numerator, int denominator);
@@ -19,6 +18,7 @@ namespace ariel
         int getNum();
         int getDeno();
         Fraction getFraction();
+        void reduce(Fraction &frac);
         void setNum(int num);
         void setDeno(int deno);
         /* + */
@@ -50,7 +50,7 @@ namespace ariel
         Fraction operator--();
         Fraction operator--(int);
         /* streams */
-        friend istream& operator>>(istream& cin, const Fraction &fraction1);
-        friend ostream& operator<<(ostream& cout, const Fraction &fraction1);
+        friend istream &operator>>(istream &cin, const Fraction &fraction1);
+        friend ostream &operator<<(ostream &cout, const Fraction &fraction1);
     };
 };

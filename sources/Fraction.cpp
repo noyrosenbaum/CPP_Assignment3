@@ -49,5 +49,8 @@ namespace ariel
         }
         num /= result;
         deno /= result;
+        frac.setNum(num);
+        frac.setDeno(deno);
+
     }
 }
