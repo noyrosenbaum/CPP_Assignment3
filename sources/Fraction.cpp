@@ -9,6 +9,10 @@ namespace ariel
         this->numerator = numerator;
         denominator != 0 ? this->denominator = denominator : throw "Initialize 0 in denominator is an illegal action";
     }
+    Fraction::Fraction(float num)
+    {
+        
+    }
     int Fraction::getNum()
     {
         return numerator;
@@ -17,7 +21,10 @@ namespace ariel
     {
         return denominator;
     }
-
+    Fraction Fraction::getFraction()
+    {
+        return Fraction(this->getNum(), this->getDeno());
+    }
     void Fraction::setNum(int num)
     {
         this->numerator = num;
@@ -26,10 +33,10 @@ namespace ariel
     {
         this->denominator = deno;
     }
-    void reduce(Fraction &fraction)
+    void reduce(Fraction &frac)
     {
-        int num = fraction.getNum();
-        int deno = fraction.getDeno();
+        int num = frac.getNum();
+        int deno = frac.getDeno();
         // find GCD of these 2 numbers and keep devide them until you reach 1
         int result = min(num, deno); // Find Minimum of a and b
         while (result > 1)
@@ -40,7 +47,7 @@ namespace ariel
             }
             result--;
         }
-        fraction.setNum(num / result);
-        fraction.setDeno(deno / result);
+        num /= result;
+        deno /= result;
     }
 }
