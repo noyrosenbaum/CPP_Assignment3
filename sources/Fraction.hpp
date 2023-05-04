@@ -48,7 +48,10 @@ public:
     friend bool operator==( const float &num, const Fraction &other);
     bool operator==(const float &num)const;
     bool operator==(const Fraction& other) const;
-    friend bool operator>( const float &num, const Fraction &other);
+    bool operator != (const Fraction& other) const;
+    friend bool operator != (const float &num, const Fraction &other);
+    bool operator != (const float &num) const;
+    friend bool operator>(const float &num, const Fraction &other);
     bool operator>(const float &num)const;
     bool operator>(const Fraction& other) const;
     friend bool operator<( const float &num, const Fraction &other);
