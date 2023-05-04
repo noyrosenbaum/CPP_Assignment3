@@ -19,7 +19,6 @@ private:
 
 public:
     Fraction(int numerator, int denominator);
-    // Fraction(const Fraction &other);
     Fraction(float num);
     int getNum() const;
     int getDeno() const;
@@ -44,7 +43,6 @@ public:
     Fraction operator*(const float& other) const;
     friend Fraction operator*(const float &num, const Fraction &other);
     /* comparassions */
-
     friend bool operator==( const float &num, const Fraction &other);
     bool operator==(const float &num)const;
     bool operator==(const Fraction& other) const;
