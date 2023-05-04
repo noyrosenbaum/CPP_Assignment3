@@ -66,7 +66,6 @@ void Fraction::reduce()
     denominator /= result;
 }
 
-
 // + operation
 const Fraction Fraction::operator+(const Fraction &other) const
 {
@@ -119,20 +118,24 @@ const Fraction Fraction::operator/(const Fraction &other) const
 
     int newNum = (numerator * other.denominator);
     int newDeno = (denominator * other.numerator);
-    // There may be a need to check for -1 for two's complement machines.
-    // If one number is -1 and another is INT_MIN, multiplying them we get abs(INT_MIN) which is 1 higher than INT_MAX
-    if ((newNum == -1 && newDeno == INT_MIN) || (newDeno != 0 && newNum > INT_MAX / newDeno))
+    if (other.denominator != 0)
     {
-        throw overflow_error("An overflow error occured");
+        // There may be a need to check for -1 for two's complement machines.
+        // If one number is -1 and another is INT_MIN, multiplying them we get abs(INT_MIN) which is 1 higher than INT_MAX
+        if ((newNum == -1 && newDeno == INT_MIN) || (newDeno != 0 && newNum > INT_MAX / newDeno))
+        {
+            throw overflow_error("An overflow error occured");
+        }
+        if ((newDeno == -1 && newNum == INT_MIN) || (newDeno != 0 && newNum < INT_MIN / newDeno))
+        {
+            throw overflow_error("An onderflow error occured");
+        }
+        else
+        {
+            return Fraction(newNum, newDeno);
+        }
     }
-    if ((newDeno == -1 && newNum == INT_MIN) || (newDeno != 0 && newNum < INT_MIN / newDeno))
-    {
-        throw overflow_error("An onderflow error occured");
-    }
-    else
-    {
-        return Fraction(newNum, newDeno);
-    }
+    throw "Initialize 0 in denominator is an illegal action";
 }
 Fraction Fraction::operator/(const float &num) const
 {
@@ -192,6 +195,15 @@ bool Fraction::operator!=(const Fraction &other) const
 {
     return !(*this == other);
 }
+bool operator!=(const float &num, const Fraction &other)
+{
+    return !(num == other);
+}
+bool Fraction::operator!=(const float &num) const
+{
+    return !(*this == num);
+}
+
 // > operation
 bool operator>(const float &num, const Fraction &other)
 {
