@@ -15,26 +15,27 @@ Fraction::Fraction(int numerator, int denominator)
 {
     this->numerator = numerator;
     denominator != 0 ? this->denominator = denominator : throw "Initialize 0 in denominator is an illegal action";
-    reduce(*this);
+    reduce();
 }
+
 Fraction::Fraction(float num)
 {
     this->numerator = int(num * 1000);
     this->denominator = 1000;
-    reduce(*this);
+    reduce();
 }
 // Getters
-int Fraction::getNum() const
+int Fraction::getNumerator() const
 {
     return numerator;
 }
-int Fraction::getDeno() const
+int Fraction::getDenominator() const
 {
     return denominator;
 }
 Fraction Fraction::getFraction()
 {
-    return Fraction(this->getNum(), this->getDeno());
+    return Fraction(this->getNumerator(), this->getDenominator());
 }
 // Setters
 void Fraction::setNum(int num)
@@ -47,10 +48,10 @@ void Fraction::setDeno(int deno)
         throw "Initialize 0 in denominator is an illegal action";
     denominator = deno;
 }
-void reduce(Fraction &frac)
+void Fraction::reduce()
 {
-    int num = frac.getNum();
-    int deno = frac.getDeno();
+    int num = numerator;
+    int deno = denominator;
     // find GCD of these 2 numbers and keep devide them until you reach 1
     int result = min(abs(num), abs(deno)); // Find Minimum of a and b
     while (result > 1)
@@ -61,11 +62,10 @@ void reduce(Fraction &frac)
         }
         result--;
     }
-    num /= result;
-    deno /= result;
-    frac.setNum(num);
-    frac.setDeno(deno);
+    numerator /= result;
+    denominator /= result;
 }
+
 
 // + operation
 const Fraction Fraction::operator+(const Fraction &other) const
@@ -290,12 +290,12 @@ istream &operator>>(istream &cin, Fraction &other)
         throw "Initialize 0 in denominator is an illegal action";
     other.numerator = numerator;
     other.denominator = denominator;
-    reduce(other);
+    other.reduce();
     return cin;
 }
 // ostream operation
 ostream &operator<<(ostream &cout, const Fraction &other)
 {
-    cout << other.getNum() << "/" << other.getDeno();
+    cout << other.getNumerator() << "/" << other.getDenominator();
     return cout;
 }
