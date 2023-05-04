@@ -6,6 +6,7 @@
 #include <functional>
 #include <cmath>
 #include <math.h>
+#include <limits.h>
 using namespace std;
 namespace ariel
 {
@@ -20,6 +21,7 @@ private:
 public:
     Fraction(int numerator, int denominator);
     Fraction(float num);
+    Fraction();
     int getNum() const;
     int getDeno() const;
     Fraction getFraction();
