@@ -9,12 +9,11 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
-
+using namespace std;
 
 #include "sources/Fraction.hpp"
 
 using namespace ariel;
-using namespace std;
 
 
 int main() {
@@ -24,7 +23,7 @@ int main() {
     cout << "a-b" << a-b << endl; 
     cout << "a/b" << a/b << endl; 
     cout << "a*b" << a*b << endl; 
-    cout << "2.3*b" << 2.3*b << endl; 
+    //cout << "2.3*b" << 2.3*b << endl; 
     cout << "a+2.421" << a+2.421 << endl; 
     Fraction c = a+b-1;
     cout << c++ << endl;

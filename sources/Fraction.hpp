@@ -19,7 +19,7 @@ private:
 
 public:
     Fraction(int numerator, int denominator);
-    Fraction(const Fraction &other);
+    // Fraction(const Fraction &other);
     Fraction(float num);
     int getNum() const;
     int getDeno() const;
@@ -61,9 +61,9 @@ public:
     bool operator<=(const float &num)const;
     bool operator<=(const Fraction& other) const;
     /* increament/decreament by 1 */
-    Fraction operator++();
+    Fraction &operator++();
     Fraction operator++(int);
-    Fraction operator--();
+    Fraction &operator--();
     Fraction operator--(int);
     /* streams */
     friend istream &operator>>(istream &cin, Fraction &other);

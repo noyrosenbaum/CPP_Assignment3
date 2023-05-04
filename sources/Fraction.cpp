@@ -239,7 +239,7 @@ bool Fraction::operator<=(const float &num) const
     return true;
 }
 
-Fraction Fraction::operator++()
+Fraction &Fraction::operator++()
 {
     // numerator += denominator;
     // return *this;
@@ -251,10 +251,10 @@ Fraction Fraction::operator++(int)
     // Fraction temp(*this);
     // numerator += denominator;
     // return temp;
-    return *this;
+    return Fraction(1,1);
 }
 
-Fraction Fraction::operator--()
+Fraction &Fraction::operator--()
 {
     // numerator -= denominator;
     // return *this;
@@ -266,7 +266,7 @@ Fraction Fraction::operator--(int)
     // Fraction temp(*this);
     // numerator -= denominator;
     // return temp;
-    return *this;
+    return Fraction(1,1);
 }
 
 istream &operator>>(istream &cin, Fraction &other)

@@ -74,8 +74,8 @@ TEST_CASE("Overload operators")
     {
         CHECK_EQ(f2, f5);
         CHECK_EQ(f1, f4);
-        // CHECK((f1 < f2) == true);
-        // CHECK((f1 > f2) == false);
+        CHECK((f1 < f2) == true);
+        CHECK((f1 > f2) == false);
     }
     SUBCASE("Unary operations by 1")
     {
