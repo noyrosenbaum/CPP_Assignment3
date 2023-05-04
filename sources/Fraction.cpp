@@ -15,7 +15,7 @@ Fraction::Fraction(int numerator, int denominator)
 Fraction::Fraction(float num)
 {
     this->numerator = int(num);
-    this->denominator = int(num);
+    this->denominator = 1;
 }
 int Fraction::getNum() const
 {
