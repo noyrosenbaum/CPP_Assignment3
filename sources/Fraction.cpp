@@ -80,12 +80,14 @@ const Fraction Fraction::operator+(const Fraction &other) const
 }
 Fraction Fraction::operator+(const float &num) const
 {
-    return Fraction(1, 1);
+    Fraction temp(num);
+    return *this + temp;
 }
 Fraction operator+(const float &num, const Fraction &other)
 {
 
-    return Fraction(1, 1);
+    Fraction temp(num);
+    return other + temp;
 }
 // - operation
 const Fraction Fraction::operator-(const Fraction &other) const
@@ -106,11 +108,13 @@ const Fraction Fraction::operator-(const Fraction &other) const
 Fraction operator-(const float &num, const Fraction &other)
 {
 
-    return Fraction(1, 1);
+    Fraction temp(num);
+    return temp - other;
 }
 Fraction Fraction::operator-(const float &num) const
 {
-    return Fraction(1, 1);
+    Fraction temp(num);
+    return *this - temp;
 }
 // / operation
 const Fraction Fraction::operator/(const Fraction &other) const
@@ -139,12 +143,18 @@ const Fraction Fraction::operator/(const Fraction &other) const
 }
 Fraction Fraction::operator/(const float &num) const
 {
-    return Fraction(1, 1);
+    if (num == 0)
+    {
+        throw "Division by zero is illegal";
+    }
+    Fraction temp(num);
+    return *this / temp;
 }
 Fraction operator/(const float &num, const Fraction &other)
 {
 
-    return Fraction(1, 1);
+    Fraction temp(num);
+    return temp / other;
 }
 // * operation
 const Fraction Fraction::operator*(const Fraction &other) const
@@ -168,18 +178,20 @@ const Fraction Fraction::operator*(const Fraction &other) const
 }
 Fraction Fraction::operator*(const float &num) const
 {
-    return Fraction(1, 1);
+    Fraction temp(num);
+    return *this * temp;
 }
 Fraction operator*(const float &num, const Fraction &other)
 {
 
-    return Fraction(1, 1);
+    Fraction temp(num);
+    return other * temp;
 }
 // == operation
 bool operator==(const float &num, const Fraction &other)
 {
-
-    return true;
+    Fraction temp(num);
+    return temp == other;
 }
 bool Fraction::operator==(const Fraction &other) const
 {
@@ -188,7 +200,8 @@ bool Fraction::operator==(const Fraction &other) const
 bool Fraction::operator==(const float &num) const
 {
 
-    return true;
+    Fraction temp(num);
+    return *this == temp;
 }
 // != operation
 bool Fraction::operator!=(const Fraction &other) const
@@ -207,8 +220,8 @@ bool Fraction::operator!=(const float &num) const
 // > operation
 bool operator>(const float &num, const Fraction &other)
 {
-
-    return true;
+    Fraction temp(num);
+    return (temp.numerator * other.denominator) > (temp.denominator * other.numerator);
 }
 bool Fraction::operator>(const Fraction &other) const
 {
@@ -216,14 +229,15 @@ bool Fraction::operator>(const Fraction &other) const
 }
 bool Fraction::operator>(const float &num) const
 {
-
-    return true;
+    Fraction temp(num);
+    return *this > temp;
 }
 // < operation
 bool operator<(const float &num, const Fraction &other)
 {
 
-    return true;
+    Fraction temp(num);
+    return (temp.numerator * other.denominator) < (temp.denominator * other.numerator);
 }
 bool Fraction::operator<(const Fraction &other) const
 {
@@ -232,13 +246,13 @@ bool Fraction::operator<(const Fraction &other) const
 bool Fraction::operator<(const float &num) const
 {
 
-    return true;
+    Fraction temp(num);
+    return *this < temp;
 }
 // >= operation
 bool operator>=(const float &num, const Fraction &other)
 {
-
-    return true;
+    return !(num < other);
 }
 bool Fraction::operator>=(const Fraction &other) const
 {
@@ -246,14 +260,13 @@ bool Fraction::operator>=(const Fraction &other) const
 }
 bool Fraction::operator>=(const float &num) const
 {
-
-    return true;
+    Fraction temp(num);
+    return *this >= temp;
 }
 // <= operation
 bool operator<=(const float &num, const Fraction &other)
 {
-
-    return true;
+    return !(other < num);
 }
 bool Fraction::operator<=(const Fraction &other) const
 {
@@ -262,12 +275,13 @@ bool Fraction::operator<=(const Fraction &other) const
 bool Fraction::operator<=(const float &num) const
 {
 
-    return true;
+    Fraction temp(num);
+    return *this <= temp;
 }
 // ++ operation
 Fraction &Fraction::operator++()
 {
-    (*this)++;
+    numerator += denominator;
     return *this;
 }
 
@@ -281,7 +295,7 @@ Fraction Fraction::operator++(int)
 Fraction &Fraction::operator--()
 {
 
-    (*this)--;
+    numerator -= denominator;
     return *this;
 }
 
