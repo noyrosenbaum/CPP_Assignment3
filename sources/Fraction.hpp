@@ -6,6 +6,8 @@
 #include <functional>
 #include <cmath>
 #include <math.h>
+#include <numeric>
+#include <limits>
 #include <limits.h>
 using namespace std;
 namespace ariel

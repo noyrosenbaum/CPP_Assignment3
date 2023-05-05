@@ -14,13 +14,13 @@ Fraction::Fraction()
 Fraction::Fraction(int numerator, int denominator)
 {
     this->numerator = numerator;
-    denominator != 0 ? this->denominator = denominator : throw "Initialize 0 in denominator is an illegal action";
+    denominator != 0 ? this->denominator = denominator : throw invalid_argument("Initialize 0 in denominator is an illegal action");
     reduce();
 }
 
 Fraction::Fraction(float num)
 {
-    this->numerator = int(num * 1000);
+    this->numerator = (int)(num * 1000);
     this->denominator = 1000;
     reduce();
 }
@@ -45,7 +45,7 @@ void Fraction::setNum(int num)
 void Fraction::setDeno(int deno)
 {
     if (denominator == 0)
-        throw "Initialize 0 in denominator is an illegal action";
+        throw invalid_argument("Initialize 0 in denominator is an illegal action");
     denominator = deno;
 }
 void Fraction::reduce()
@@ -64,6 +64,16 @@ void Fraction::reduce()
     }
     numerator /= result;
     denominator /= result;
+    if (numerator < 0 && denominator < 0)
+    {
+        numerator *= -1;
+        denominator *= -1;
+    }
+    if (numerator > 0 && denominator < 0)
+    {
+        numerator *= -1;
+        denominator *= -1;
+    }
 }
 
 // + operation
@@ -139,13 +149,13 @@ const Fraction Fraction::operator/(const Fraction &other) const
             return Fraction(newNum, newDeno);
         }
     }
-    throw "Initialize 0 in denominator is an illegal action";
+    throw invalid_argument("Initialize 0 in denominator is an illegal action");
 }
 Fraction Fraction::operator/(const float &num) const
 {
     if (num == 0)
     {
-        throw "Division by zero is illegal";
+        throw invalid_argument("Initialize 0 in denominator is an illegal action");
     }
     Fraction temp(num);
     return *this / temp;
@@ -313,7 +323,7 @@ istream &operator>>(istream &cin, Fraction &other)
     if (cin.fail())
         throw runtime_error("Invalid input");
     if (denominator == 0)
-        throw "Initialize 0 in denominator is an illegal action";
+        throw invalid_argument("Initialize 0 in denominator is an illegal action");
     other.numerator = numerator;
     other.denominator = denominator;
     other.reduce();
