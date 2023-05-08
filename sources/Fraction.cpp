@@ -20,7 +20,7 @@ Fraction::Fraction(int numerator, int denominator)
 
 Fraction::Fraction(float num)
 {
-    this->numerator = (int)(num * 1000);
+    this->numerator = floor(num * 1000);
     this->denominator = 1000;
     reduce();
 }
@@ -162,7 +162,10 @@ Fraction Fraction::operator/(const float &num) const
 }
 Fraction operator/(const float &num, const Fraction &other)
 {
-
+    if(other.numerator == 0)
+    {
+        throw invalid_argument("");
+    }
     Fraction temp(num);
     return temp / other;
 }
@@ -284,7 +287,6 @@ bool Fraction::operator<=(const Fraction &other) const
 }
 bool Fraction::operator<=(const float &num) const
 {
-
     Fraction temp(num);
     return *this <= temp;
 }
