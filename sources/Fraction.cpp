@@ -1,7 +1,6 @@
 #include "Fraction.hpp"
 
 using namespace std;
-
 using namespace ariel;
 
 // Default constructor
@@ -77,6 +76,8 @@ void Fraction::reduce()
 }
 
 // + operation
+// if deno is negative and the num  is less than the difference between INT_MIN and newDeno,
+// then the addition will also result in an integer overflow.
 const Fraction Fraction::operator+(const Fraction &other) const
 {
     int newNum = (numerator * other.denominator + denominator * other.numerator);
@@ -134,13 +135,13 @@ const Fraction Fraction::operator/(const Fraction &other) const
     int newDeno = (denominator * other.numerator);
     if (other.denominator != 0)
     {
-        // There may be a need to check for -1 for two's complement machines.
         // If one number is -1 and another is INT_MIN, multiplying them we get abs(INT_MIN) which is 1 higher than INT_MAX
-        if ((newNum == -1 && newDeno == INT_MIN) || (newDeno != 0 && newNum > INT_MAX / newDeno))
+        // If newDeno is
+        if ((newNum == -1 && newDeno == INT_MIN))
         {
             throw overflow_error("An overflow error occured");
         }
-        if ((newDeno == -1 && newNum == INT_MIN) || (newDeno != 0 && newNum < INT_MIN / newDeno))
+        if ((newDeno == -1 && newNum == INT_MIN))
         {
             throw overflow_error("An onderflow error occured");
         }
@@ -153,16 +154,18 @@ const Fraction Fraction::operator/(const Fraction &other) const
 }
 Fraction Fraction::operator/(const float &num) const
 {
-    if (num == 0)
+    if (num == 0) 
     {
         throw invalid_argument("Initialize 0 in denominator is an illegal action");
+        
     }
     Fraction temp(num);
     return *this / temp;
 }
 Fraction operator/(const float &num, const Fraction &other)
 {
-    if(other.numerator == 0)
+    // becomes denomerator
+    if (other.numerator == 0)
     {
         throw invalid_argument("");
     }
@@ -229,7 +232,6 @@ bool Fraction::operator!=(const float &num) const
 {
     return !(*this == num);
 }
-
 // > operation
 bool operator>(const float &num, const Fraction &other)
 {
@@ -248,7 +250,6 @@ bool Fraction::operator>(const float &num) const
 // < operation
 bool operator<(const float &num, const Fraction &other)
 {
-
     Fraction temp(num);
     return (temp.numerator * other.denominator) < (temp.denominator * other.numerator);
 }
@@ -258,7 +259,6 @@ bool Fraction::operator<(const Fraction &other) const
 }
 bool Fraction::operator<(const float &num) const
 {
-
     Fraction temp(num);
     return *this < temp;
 }
@@ -291,14 +291,16 @@ bool Fraction::operator<=(const float &num) const
     return *this <= temp;
 }
 // ++ operation
+// overloads the pre-increment operator.
 Fraction &Fraction::operator++()
 {
     numerator += denominator;
     return *this;
 }
-
+// overloads the post-increment operator
 Fraction Fraction::operator++(int)
 {
+    // copy
     Fraction temp(*this);
     ++(*this);
     return temp;
@@ -306,7 +308,6 @@ Fraction Fraction::operator++(int)
 // -- operation
 Fraction &Fraction::operator--()
 {
-
     numerator -= denominator;
     return *this;
 }

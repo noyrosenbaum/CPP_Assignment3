@@ -37,12 +37,12 @@ int main() {
     cout << "Division: " << frac2 << " / " << frac4 << " = " << (frac2 / frac4) << endl;
 
     // Comparison operations
-    cout << "Equality: " << frac2 << " == " << frac4 << " -> " << (frac2 == frac4) << endl;
-    cout << "Inequality: " << frac2 << " != " << frac4 << " -> " << (frac2 != frac4) << endl;
-    cout << "Greater than: " << frac2 << " > " << frac4 << " -> " << (frac2 > frac4) << endl;
-    cout << "Less than: " << frac2 << " < " << frac4 << " -> " << (frac2 < frac4) << endl;
-    cout << "Greater than or equal to: " << frac2 << " >= " << frac4 << " -> " << (frac2 >= frac4) << endl;
-    cout << "Less than or equal to: " << frac2 << " <= " << frac4 << " -> " << (frac2 <= frac4) << endl;
+    cout << "Equality: " << frac2 << " == " << frac4 << " ? -> " << (frac2 == frac4) << endl;
+    cout << "Inequality: " << frac2 << " != " << frac4 << " ? -> " << (frac2 != frac4) << endl;
+    cout << "Greater than: " << frac2 << " > " << frac4 << " ? -> " << (frac2 > frac4) << endl;
+    cout << "Less than: " << frac2 << " < " << frac4 << " ? -> " << (frac2 < frac4) << endl;
+    cout << "Greater than or equal to: " << frac2 << " >= " << frac4 << " ? -> " << (frac2 >= frac4) << endl;
+    cout << "Less than or equal to: " << frac2 << " <= " << frac4 << " ? -> " << (frac2 <= frac4) << endl;
 
     // Increment and decrement
     cout << "Pre-increment: ++" << frac2 << " = ";
